@@ -1,0 +1,42 @@
+.nav-list {
+  align-items: center;
+  background-color: var(--wine-background);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.2rem 8rem;
+}
+
+.nav-item,
+.material-icons {
+  background-color: var(--wine-background);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.material-icons {
+  font-size: 1.8rem;
+}
+
+.material-icons:hover {
+  transform: scale(1.25);
+}
+
+.logo {
+  font-size: 2rem;
+}
+
+@media (max-width: 700px) {
+  .nav-list {
+    padding: 0.2rem 2rem;
+    gap: 10px;
+  }
+
+  .material-icons {
+    font-size: 1.8rem;
+  }
+
+  .logo {
+    text-align: center;
+    font-size: 1.8rem;
+  }
+}

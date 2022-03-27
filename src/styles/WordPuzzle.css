@@ -1,0 +1,51 @@
+.puzzle-area {
+  margin-top: 2rem;
+}
+.flex-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.flex-item {
+  align-items: center;
+  background-color: rgba(54, 69, 79, 0.25);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  height: 70px;
+  justify-content: center;
+  margin: 3px 2px;
+  width: 70px;
+}
+
+.digit {
+  font-size: 3rem;
+  font-weight: 500;
+}
+
+.active {
+  border: 5px solid mediumaquamarine;
+}
+
+.rightPlace {
+  background-color: var(--right-color);
+}
+
+.wrongPlace {
+  background-color: var(--wrong-place);
+}
+.wrongDigit {
+  background-color: var(--wrong-digit);
+}
+
+@media (max-width: 700px) {
+  .flex-item {
+    width: 60px;
+    height: 60px;
+  }
+
+  .digit {
+    font-size: 2.5rem;
+  }
+}
