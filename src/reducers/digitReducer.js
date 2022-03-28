@@ -153,6 +153,9 @@ export default function digitReducer(
       let checkEndOfTheGame = checkIfGameOver(state.value);
       let correctLetters = checkCorrectLetters(state.value);
       if (wordIsChecked) {
+        if (checkEndOfTheGame) {
+          return { ...state, correctLetters: correctLetters };
+        }
         if (!checkEndOfTheGame && attempt < 6) {
           attempt++;
           return {
