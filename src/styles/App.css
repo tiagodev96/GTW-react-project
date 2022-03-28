@@ -11,7 +11,6 @@
 *,
 *::after,
 *::before {
-  background-color: var(--background-blue);
   box-sizing: border-box;
   color: rgba(255, 255, 255, 1);
   font-family: "Mitr", sans-serif;
@@ -19,4 +18,14 @@
   padding: 0;
   list-style: none;
   text-decoration: none;
+}
+
+body {
+  background: rgb(80, 101, 109);
+  background: linear-gradient(
+    0deg,
+    rgba(80, 101, 109, 1) 0%,
+    rgba(156, 175, 183, 1) 100%
+  );
+  height: 100vh;
 }

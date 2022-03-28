@@ -1,5 +1,6 @@
-let attempt = 1;
+export let attempt = 1;
 let dailyWord = "FRONT";
+let correctLetters = [];
 
 function defineRange() {
   if (attempt === 1) return [0, 1, 2, 3, 4];
@@ -13,6 +14,7 @@ function defineRange() {
 const digitInitialState = {
   id: defineInitialIdByAttempt(attempt),
   value: [],
+  correctLetters: [],
 };
 
 function defineInitialIdByAttempt(attempt) {
@@ -106,6 +108,23 @@ function checkIfGameOver(letters) {
   return attemptArray.join("") === dailyWord ? true : false;
 }
 
+function checkCorrectLetters(letters) {
+  let correctWordArray = dailyWord.split("");
+
+  let correctWordIndex = 0;
+  let index = defineRange();
+  let firstIndex = index[0];
+  let limitIndex = index[4];
+
+  for (let i = firstIndex; i <= limitIndex; i++) {
+    let correctLetter = letters[i] === correctWordArray[correctWordIndex];
+    if (correctLetter) correctLetters[i] = letters[i];
+    if (!correctLetter) correctLetters[i] = "";
+    correctWordIndex++;
+  }
+  return correctLetters;
+}
+
 export default function digitReducer(
   state = digitInitialState,
   { type, payload }
@@ -132,12 +151,20 @@ export default function digitReducer(
     case "ENTER":
       let wordIsChecked = wordValidation(state.value);
       let checkEndOfTheGame = checkIfGameOver(state.value);
+      let correctLetters = checkCorrectLetters(state.value);
       if (wordIsChecked) {
         if (!checkEndOfTheGame && attempt < 6) {
           attempt++;
           return {
             ...state,
             id: defineInitialIdByAttempt(attempt),
+            correctLetters: correctLetters,
+          };
+        }
+        if (!checkEndOfTheGame && attempt >= 6) {
+          return {
+            ...state,
+            correctLetters: correctLetters,
           };
         }
       }

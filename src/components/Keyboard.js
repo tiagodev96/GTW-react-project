@@ -1,8 +1,49 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 function Keyboard() {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    let permitedKeys = [
+      "a",
+      "b",
+      "c",
+      "d",
+      "e",
+      "f",
+      "g",
+      "h",
+      "i",
+      "j",
+      "k",
+      "l",
+      "m",
+      "n",
+      "o",
+      "p",
+      "q",
+      "r",
+      "s",
+      "t",
+      "u",
+      "v",
+      "w",
+      "x",
+      "y",
+      "z",
+    ];
+    document.addEventListener("keydown", (e) => {
+      if (permitedKeys.includes(e.key)) {
+        e.preventDefault();
+        dispatch({ type: "INCREASE", payload: e.key.toUpperCase() });
+      } else if (e.key === "Enter") {
+        dispatch({ type: "ENTER" });
+      } else if (e.key === "Backspace") {
+        dispatch({ type: "DELETE" });
+      }
+    });
+  });
 
   return (
     <section className="keyboard-area">
