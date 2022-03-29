@@ -35,6 +35,7 @@
 .wrongPlace {
   background-color: var(--wrong-place);
 }
+
 .wrongDigit {
   background-color: var(--wrong-digit);
 }

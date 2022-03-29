@@ -1,8 +1,10 @@
 export let attempt = 1;
 let dailyWord = "FRONT";
 let correctLetters = [];
+let wrongLetters = [];
+let wrongPlaceLetters = [];
 
-function defineRange() {
+export function defineRange() {
   if (attempt === 1) return [0, 1, 2, 3, 4];
   if (attempt === 2) return [5, 6, 7, 8, 9];
   if (attempt === 3) return [10, 11, 12, 13, 14];
@@ -15,6 +17,8 @@ const digitInitialState = {
   id: defineInitialIdByAttempt(attempt),
   value: [],
   correctLetters: [],
+  inexistentLetters: [],
+  wrongPlaceLetters: [],
 };
 
 function defineInitialIdByAttempt(attempt) {
@@ -125,6 +129,41 @@ function checkCorrectLetters(letters) {
   return correctLetters;
 }
 
+function checkInexistentLetters(letters) {
+  let correctWordArray = dailyWord.split("");
+  let index = defineRange();
+  let firstIndex = index[0];
+  let limitIndex = index[4];
+
+  for (let i = firstIndex; i <= limitIndex; i++) {
+    let letterExistsOnCorrectWord = correctWordArray.includes(letters[i]);
+    if (!letterExistsOnCorrectWord) wrongLetters[i] = letters[i];
+    if (letterExistsOnCorrectWord) wrongLetters[i] = "";
+  }
+  return wrongLetters;
+}
+
+function checkWrongPlaceLetters(letters) {
+  let correctWordArray = dailyWord.split("");
+
+  let correctWordIndex = 0;
+  let index = defineRange();
+  let firstIndex = index[0];
+  let limitIndex = index[4];
+
+  for (let i = firstIndex; i <= limitIndex; i++) {
+    let correctLetter = letters[i] === correctWordArray[correctWordIndex];
+
+    let letterExistsOnCorrectWord = correctWordArray.includes(letters[i]);
+
+    if (!correctLetter && letterExistsOnCorrectWord)
+      wrongPlaceLetters[i] = letters[i];
+    if (correctLetter || !letterExistsOnCorrectWord) wrongPlaceLetters[i] = "";
+    correctWordIndex++;
+  }
+  return wrongPlaceLetters;
+}
+
 export default function digitReducer(
   state = digitInitialState,
   { type, payload }
@@ -152,9 +191,15 @@ export default function digitReducer(
       let wordIsChecked = wordValidation(state.value);
       let checkEndOfTheGame = checkIfGameOver(state.value);
       let correctLetters = checkCorrectLetters(state.value);
+      let inexistentLetters = checkInexistentLetters(state.value);
+      let wrongPlaceLetters = checkWrongPlaceLetters(state.value);
+
       if (wordIsChecked) {
         if (checkEndOfTheGame) {
-          return { ...state, correctLetters: correctLetters };
+          return {
+            ...state,
+            correctLetters: correctLetters,
+          };
         }
         if (!checkEndOfTheGame && attempt < 6) {
           attempt++;
@@ -162,6 +207,8 @@ export default function digitReducer(
             ...state,
             id: defineInitialIdByAttempt(attempt),
             correctLetters: correctLetters,
+            inexistentLetters: inexistentLetters,
+            wrongPlaceLetters: wrongPlaceLetters,
           };
         }
         if (!checkEndOfTheGame && attempt >= 6) {
