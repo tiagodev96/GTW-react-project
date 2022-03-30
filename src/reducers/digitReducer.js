@@ -156,7 +156,23 @@ function checkWrongPlaceLetters(letters) {
 
     let letterExistsOnCorrectWord = correctWordArray.includes(letters[i]);
 
-    if (!correctLetter && letterExistsOnCorrectWord)
+    let letterOfAttemptOcurrencesOnRightWord = correctWordArray.filter(
+      (x) => x === letters[i]
+    ).length;
+
+    let ocurrenceOfLetterOnRange =
+      wrongPlaceLetters
+        .slice(firstIndex, limitIndex + 1)
+        .filter((x) => x === letters[i]).length +
+      correctLetters
+        .slice(firstIndex, limitIndex + 1)
+        .filter((x) => x === letters[i]).length;
+
+    if (
+      !correctLetter &&
+      letterExistsOnCorrectWord &&
+      ocurrenceOfLetterOnRange < letterOfAttemptOcurrencesOnRightWord
+    )
       wrongPlaceLetters[i] = letters[i];
     if (correctLetter || !letterExistsOnCorrectWord) wrongPlaceLetters[i] = "";
     correctWordIndex++;
