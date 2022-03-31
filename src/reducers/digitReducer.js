@@ -10,7 +10,7 @@ import {
 } from "../dataManipulation/dataManipulation";
 
 export let attempt = 1;
-export let dailyWord = "FRONT";
+export let dailyWord = "LINDA";
 export let correctLetters = [];
 export let wrongLetters = [];
 export let wrongPlaceLetters = [];
@@ -21,6 +21,7 @@ const digitInitialState = {
   correctLetters: [],
   inexistentLetters: [],
   wrongPlaceLetters: [],
+  isGameOver: false,
 };
 
 function checkIdClicked(attempt, idClicked) {
@@ -95,15 +96,20 @@ export default function digitReducer(
     case "ENTER":
       let wordIsChecked = wordValidation(state.value);
       let checkEndOfTheGame = checkIfGameOver(state.value);
-      let correctLetters = checkCorrectLetters(state.value);
-      let inexistentLetters = checkInexistentLetters(state.value);
-      let wrongPlaceLetters = checkWrongPlaceLetters(state.value);
 
       if (wordIsChecked) {
-        if (checkEndOfTheGame) {
+        let correctLetters = checkCorrectLetters(state.value);
+        let inexistentLetters = checkInexistentLetters(state.value);
+        let wrongPlaceLetters = checkWrongPlaceLetters(state.value);
+
+        if (checkEndOfTheGame || attempt >= 6) {
+          console.log("gameover");
           return {
             ...state,
             correctLetters: correctLetters,
+            inexistentLetters: inexistentLetters,
+            wrongPlaceLetters: wrongPlaceLetters,
+            isGameOver: true,
           };
         }
         if (!checkEndOfTheGame && attempt < 6) {
