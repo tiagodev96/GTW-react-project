@@ -1,3 +1,18 @@
+@keyframes inexistent {
+  0% {
+    background-color: rgba(132, 0, 50, 0.5);
+  }
+  50% {
+    transform: scale(0.65);
+  }
+
+  100% {
+    background-color: var(--wrong-digit);
+    opacity: 0.25;
+    transform: scale(1);
+  }
+}
+
 .keyboard-area {
   margin-top: 15px;
 }
@@ -24,6 +39,14 @@
   justify-content: center;
   margin: 2px 2px;
   text-transform: uppercase;
+}
+
+.inexistent-key {
+  background-color: var(--wrong-digit);
+  opacity: 0.45;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+  animation-name: inexistent;
+  animation-duration: 0.75s;
 }
 
 .content {

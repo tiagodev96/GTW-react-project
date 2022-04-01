@@ -1,37 +1,75 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function Keyboard() {
+  const letterState = useSelector((state) => {
+    return {
+      inexistentLetters: state.inexistentLetters,
+    };
+  });
+
   const dispatch = useDispatch();
+
+  function isLetterInexistent(letter) {
+    return letterState.inexistentLetters.includes(letter)
+      ? "inexistent-key"
+      : "";
+  }
 
   useEffect(() => {
     let permitedKeys = [
       "a",
+      "A",
       "b",
+      "B",
       "c",
+      "C",
       "d",
+      "D",
       "e",
+      "E",
       "f",
+      "F",
       "g",
+      "G",
       "h",
+      "H",
       "i",
+      "I",
       "j",
+      "J",
       "k",
+      "K",
       "l",
+      "L",
       "m",
+      "M",
       "n",
+      "N",
       "o",
+      "O",
       "p",
+      "P",
       "q",
+      "Q",
       "r",
+      "R",
       "s",
+      "S",
       "t",
+      "T",
       "u",
+      "U",
       "v",
+      "V",
       "w",
+      "W",
       "x",
+      "X",
       "y",
+      "Y",
       "z",
+      "Z",
     ];
     document.addEventListener("keydown", (e) => {
       if (permitedKeys.includes(e.key)) {
@@ -43,14 +81,14 @@ function Keyboard() {
         dispatch({ type: "DELETE" });
       }
     });
-  });
+  }, [dispatch]);
 
   return (
     <section className="keyboard-area">
       <div className="keyboard-flex">
         <div className="flex-row">
           <button
-            className="key"
+            className={`key ${isLetterInexistent("Q")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "Q" });
             }}
@@ -58,7 +96,7 @@ function Keyboard() {
             <div className="content">Q</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("W")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "W" });
             }}
@@ -66,7 +104,7 @@ function Keyboard() {
             <div className="content">W</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("E")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "E" });
             }}
@@ -74,7 +112,7 @@ function Keyboard() {
             <div className="content">E</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("R")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "R" });
             }}
@@ -82,7 +120,7 @@ function Keyboard() {
             <div className="content">R</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("T")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "T" });
             }}
@@ -90,7 +128,7 @@ function Keyboard() {
             <div className="content">T</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("Y")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "Y" });
             }}
@@ -98,7 +136,7 @@ function Keyboard() {
             <div className="content">Y</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("U")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "U" });
             }}
@@ -106,7 +144,7 @@ function Keyboard() {
             <div className="content">U</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("I")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "I" });
             }}
@@ -114,7 +152,7 @@ function Keyboard() {
             <div className="content">I</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("O")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "O" });
             }}
@@ -122,7 +160,7 @@ function Keyboard() {
             <div className="content">O</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("P")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "P" });
             }}
@@ -132,7 +170,7 @@ function Keyboard() {
         </div>
         <div className="flex-row">
           <button
-            className="key"
+            className={`key ${isLetterInexistent("A")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "A" });
             }}
@@ -140,7 +178,7 @@ function Keyboard() {
             <div className="content">A</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("S")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "S" });
             }}
@@ -148,7 +186,7 @@ function Keyboard() {
             <div className="content">S</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("D")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "D" });
             }}
@@ -156,7 +194,7 @@ function Keyboard() {
             <div className="content">D</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("F")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "F" });
             }}
@@ -164,7 +202,7 @@ function Keyboard() {
             <div className="content">F</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("G")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "G" });
             }}
@@ -172,7 +210,7 @@ function Keyboard() {
             <div className="content">G</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("H")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "H" });
             }}
@@ -180,7 +218,7 @@ function Keyboard() {
             <div className="content">H</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("J")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "J" });
             }}
@@ -188,7 +226,7 @@ function Keyboard() {
             <div className="content">J</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("K")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "K" });
             }}
@@ -196,7 +234,7 @@ function Keyboard() {
             <div className="content">K</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("L")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "L" });
             }}
@@ -214,7 +252,7 @@ function Keyboard() {
         </div>
         <div className="flex-row">
           <button
-            className="key"
+            className={`key ${isLetterInexistent("Z")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "Z" });
             }}
@@ -222,7 +260,7 @@ function Keyboard() {
             <div className="content">Z</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("X")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "X" });
             }}
@@ -230,7 +268,7 @@ function Keyboard() {
             <div className="content">X</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("C")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "C" });
             }}
@@ -238,7 +276,7 @@ function Keyboard() {
             <div className="content">C</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("V")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "V" });
             }}
@@ -246,7 +284,7 @@ function Keyboard() {
             <div className="content">V</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("B")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "B" });
             }}
@@ -254,7 +292,7 @@ function Keyboard() {
             <div className="content">B</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("N")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "N" });
             }}
@@ -262,7 +300,7 @@ function Keyboard() {
             <div className="content">N</div>
           </button>
           <button
-            className="key"
+            className={`key ${isLetterInexistent("M")}`}
             onClick={() => {
               dispatch({ type: "INCREASE", payload: "M" });
             }}

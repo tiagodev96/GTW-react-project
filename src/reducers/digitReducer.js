@@ -8,9 +8,16 @@ import {
   checkInexistentLetters,
   checkWrongPlaceLetters,
 } from "../dataManipulation/dataManipulation";
+import { englishWords } from "../dictionaries/englishWords";
+import Foswig from "foswig";
+
+let englishArray = englishWords.map((x) => x.toLocaleUpperCase());
+let chain = new Foswig(3, englishArray);
+const constraints = { minLength: 5, maxLength: 5 };
 
 export let attempt = 1;
-export let dailyWord = "LINDA";
+export let correctWord = chain.generate(constraints);
+console.log("🚀 ~ file: digitReducer.js ~ line 20 ~ correctWord", correctWord);
 export let correctLetters = [];
 export let wrongLetters = [];
 export let wrongPlaceLetters = [];
@@ -22,6 +29,7 @@ const digitInitialState = {
   inexistentLetters: [],
   wrongPlaceLetters: [],
   isGameOver: false,
+  gameWon: false,
 };
 
 function checkIdClicked(attempt, idClicked) {
@@ -67,7 +75,7 @@ function checkIfGameOver(letters) {
   }
   let attemptArray = defineArrayByAttempt(letters);
 
-  return attemptArray.join("") === dailyWord ? true : false;
+  return attemptArray.join("") === correctWord ? true : false;
 }
 
 export default function digitReducer(
@@ -83,7 +91,6 @@ export default function digitReducer(
         value: [...state.value],
         id: idIncrement(state.id),
       };
-
     case "DELETE":
       state.value.splice(state.id, 1);
       let idPopDecrement = idDecrement(state.id);
@@ -103,13 +110,14 @@ export default function digitReducer(
         let wrongPlaceLetters = checkWrongPlaceLetters(state.value);
 
         if (checkEndOfTheGame || attempt >= 6) {
-          console.log("gameover");
+          let isGameWon = checkEndOfTheGame ? true : false;
           return {
             ...state,
             correctLetters: correctLetters,
             inexistentLetters: inexistentLetters,
             wrongPlaceLetters: wrongPlaceLetters,
             isGameOver: true,
+            gameWon: isGameWon,
           };
         }
         if (!checkEndOfTheGame && attempt < 6) {
@@ -138,6 +146,23 @@ export default function digitReducer(
       }
 
       return { ...state, id: state.id };
+
+    case "RESTARTGAME":
+      attempt = 1;
+      correctWord = chain.generate(constraints);
+      correctLetters = [];
+      wrongLetters = [];
+      wrongPlaceLetters = [];
+
+      return {
+        id: defineInitialIdByAttempt(attempt),
+        value: [],
+        correctLetters: [],
+        inexistentLetters: [],
+        wrongPlaceLetters: [],
+        isGameOver: false,
+        gameWon: false,
+      };
 
     default:
       return state;
