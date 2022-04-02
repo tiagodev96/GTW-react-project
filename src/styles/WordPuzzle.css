@@ -40,7 +40,8 @@
 }
 
 .active {
-  border: 5px solid mediumaquamarine;
+  border: 5px solid rgba(54, 69, 79, 0.25);
+  background-color: transparent;
 }
 
 .rightPlace {
