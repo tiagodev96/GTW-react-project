@@ -9,7 +9,6 @@
 
 .modal-content, .modal-content-instructions {
   background: rgba(0, 0, 0, .75);
-  height: 100%;
   position: relative;
   width: 50%;
   display: flex;
@@ -28,6 +27,14 @@
   z-index: 1000;
   border-radius: 15px;
   overflow-y: scroll visible;
+}
+
+.modal-content {
+  height: 50%;
+}
+
+.modal-content-instructions {
+  height: 100%;
 }
 
 .modal-title {
