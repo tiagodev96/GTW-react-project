@@ -78,7 +78,6 @@ function checkIfGameOver(letters) {
 }
 
 function handleIdByArrows(command, id) {
-  console.log(id);
   if (command === "INCREASE") {
     let range = defineRange(attempt);
     let minIdPermited = range[0];
@@ -118,7 +117,8 @@ export default function digitReducer(
         id: idIncrement(state.id),
       };
     case "DELETE":
-      state.value.splice(state.id, 1);
+      // state.value.splice(state.id, 1);
+      state.value[state.id] = "";
       let idPopDecrement = idDecrement(state.id);
       return {
         ...state,

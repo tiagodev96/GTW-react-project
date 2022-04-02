@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 function Keyboard() {
   const letterState = useSelector((state) => {
     return {
-      inexistentLetters: state.inexistentLetters,
       correctLetters: state.correctLetters,
+      wrongPlaceLetters: state.wrongPlaceLetters,
+      inexistentLetters: state.inexistentLetters,
     };
   });
 
@@ -14,6 +15,8 @@ function Keyboard() {
   function defineLetterClass(letter) {
     return letterState.correctLetters.includes(letter)
       ? "correct-key"
+      : letterState.wrongPlaceLetters.includes(letter)
+      ? "wrong-place-key"
       : letterState.inexistentLetters.includes(letter)
       ? "inexistent-key"
       : "";

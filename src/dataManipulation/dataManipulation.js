@@ -52,7 +52,7 @@ export function wordValidation(letters) {
   let range = defineRange();
   let attemptArray = letters.slice(range[0], range.splice(-1)[0] + 1);
 
-  if (attemptArray.length !== 5) {
+  if (attemptArray.length !== 5 || attemptArray.includes("")) {
     alert("Please enter all five letters");
     return false;
   }

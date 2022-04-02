@@ -70,6 +70,13 @@
   animation-duration: 0.75s;
 }
 
+.wrong-place-key {
+  background-color: var(--wrong-place);
+  box-shadow: 1px 1px 5px rgba(229, 149, 0, .5);
+  animation-name: correct;
+  animation-duration: 0.75s;
+}
+
 .content {
   background-color: transparent;
   width: 55px;
