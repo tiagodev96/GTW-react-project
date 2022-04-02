@@ -77,6 +77,33 @@ function checkIfGameOver(letters) {
   return attemptArray.join("") === correctWord ? true : false;
 }
 
+function handleIdByArrows(command, id) {
+  console.log(id);
+  if (command === "INCREASE") {
+    let range = defineRange(attempt);
+    let minIdPermited = range[0];
+    let maxIdPermited = range[4];
+    if (id < maxIdPermited) {
+      let newId = id + 1;
+      return newId;
+    } else if (id === maxIdPermited) {
+      return minIdPermited;
+    }
+  }
+
+  if (command === "DECREASE") {
+    let range = defineRange(attempt);
+    let minIdPermited = range[0];
+    let maxIdPermited = range[4];
+    if (id > minIdPermited) {
+      let newId = id - 1;
+      return newId;
+    } else if (id === minIdPermited) {
+      return maxIdPermited;
+    }
+  }
+}
+
 export default function digitReducer(
   state = digitInitialState,
   { type, payload }
@@ -145,6 +172,20 @@ export default function digitReducer(
       }
 
       return { ...state, id: state.id };
+
+    case "INCREASE_ID":
+      let newIdIncreased = handleIdByArrows("INCREASE", state.id);
+      return {
+        ...state,
+        id: newIdIncreased,
+      };
+
+    case "DECREASE_ID":
+      let newIdDecreased = handleIdByArrows("DECREASE", state.id);
+      return {
+        ...state,
+        id: newIdDecreased,
+      };
 
     case "RESTARTGAME":
       attempt = 1;

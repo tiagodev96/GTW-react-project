@@ -82,6 +82,10 @@ function Keyboard() {
         dispatch({ type: "ENTER" });
       } else if (e.key === "Backspace") {
         dispatch({ type: "DELETE" });
+      } else if (e.key === "ArrowRight") {
+        dispatch({ type: "INCREASE_ID" });
+      } else if (e.key === "ArrowLeft") {
+        dispatch({ type: "DECREASE_ID" });
       }
     });
   }, [dispatch]);
