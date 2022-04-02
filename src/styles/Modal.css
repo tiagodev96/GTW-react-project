@@ -7,15 +7,16 @@
   height: 100vh;
 }
 
-.modal-content {
-  background: var(--wrong-digit);
-  height: 50%;
+.modal-content, .modal-content-instructions {
+  background: rgba(0, 0, 0, .75);
+  height: 100%;
+  position: relative;
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 25px;
+  gap: 1em;
   position: absolute;
   left: 0;
   right: 0;
@@ -26,6 +27,7 @@
   text-align: center;
   z-index: 1000;
   border-radius: 15px;
+  overflow-y: scroll visible;
 }
 
 .modal-title {
@@ -36,6 +38,14 @@
 .modal-subtitle {
   font-size: 1.5rem;
   font-weight: 400;
+}
+
+.modal-description {
+  align-self: flex-start;
+  font-size: 1.125rem;
+  font-weight: 400;
+  padding: 0 2.5rem;
+  text-align: left;
 }
 
 .modal-close-button {
@@ -52,6 +62,39 @@
 .modal-close-button:hover {
   color: white;
   background: var(--wine-background);
+}
+
+.horizontal-line-break {
+  background: white;
+  width: 90%;
+  height: 1px;
+}
+
+.word-example {
+  display: flex;
+  gap: 1rem;
+}
+
+.letter-example {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(54, 69, 79, 0.25);
+  border-radius: 5px;
+  width: 35px;
+  height: 35px;
+}
+
+.letter1 {
+  background-color: var(--right-color);
+}
+
+.letter2 {
+  background-color: var(--wrong-digit);
+}
+
+.letter4 {
+  background-color: var(--wrong-place);
 }
 
 @media (max-width: 650px) {

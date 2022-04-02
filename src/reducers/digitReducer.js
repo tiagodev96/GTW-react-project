@@ -17,7 +17,6 @@ const constraints = { minLength: 5, maxLength: 5 };
 
 export let attempt = 1;
 export let correctWord = chain.generate(constraints);
-console.log("🚀 ~ file: digitReducer.js ~ line 20 ~ correctWord", correctWord);
 export let correctLetters = [];
 export let wrongLetters = [];
 export let wrongPlaceLetters = [];

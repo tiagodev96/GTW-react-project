@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import WordPuzzle from "./components/WordPuzzle";
 import Keyboard from "./components/Keyboard";
 import GameOverModal from "./components/GameOverModal";
+import InstructionModal from "./components/InstructionModal";
 import "./styles/App.css";
 import "./styles/Navbar.css";
 import "./styles/WordPuzzle.css";
@@ -21,6 +22,7 @@ function App() {
         <WordPuzzle />
         <Keyboard />
         <GameOverModal />
+        <InstructionModal />
       </Provider>
     </div>
   );
