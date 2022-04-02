@@ -2,23 +2,13 @@
   align-items: center;
   background-color: var(--wine-background);
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   padding: 0.2rem 8rem;
 }
 
-.nav-item,
-.material-icons {
+.nav-item {
   background-color: var(--wine-background);
   cursor: pointer;
-  transition: 0.3s;
-}
-
-.material-icons {
-  font-size: 1.8rem;
-}
-
-.material-icons:hover {
-  transform: scale(1.25);
 }
 
 .logo {
@@ -29,10 +19,6 @@
   .nav-list {
     padding: 0.2rem 2rem;
     gap: 10px;
-  }
-
-  .material-icons {
-    font-size: 1.8rem;
   }
 
   .logo {
